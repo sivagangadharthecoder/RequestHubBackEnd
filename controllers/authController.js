@@ -60,45 +60,68 @@ export const register = async (req, res) => {
         await sendEmail({
             from: process.env.EMAIL_USER,
             to: email,
-            subject: "🎉 Welcome to RequestHub!",
-            text: `Hi,\n\nWelcome to RequestHub...`,
-            html: `<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7f9fc; padding: 30px; border-radius: 10px; color: #213448; max-width: 600px; margin: auto; border: 1px solid #ddd;">
-  <h2 style="color: #547792;">🎉 Welcome to RequestHub!</h2>
-  <p>Hi <strong>${name}</strong>,</p>
-  <p>We're excited to have you onboard. RequestHub is your one-stop portal for managing academic requests with <strong>efficiency</strong> and <strong>clarity</strong>.</p>
+            subject: "Welcome to RequestHub!",
+            text: `Hi ${name},\n\nWelcome to RequestHub, your academic request assistant.`,
+            html: `
+  <div style="font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f8fb; padding: 40px 20px;">
+    <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e0e6ed;">
 
-  <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+      <!-- Header -->
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h1 style="color: #213448; font-size: 26px; margin-bottom: 10px;">🎉 Welcome to <span style="color: #547792;">RequestHub</span>!</h1>
+        <p style="font-size: 16px; color: #444;">Your academic journey just got easier.</p>
+      </div>
 
-  <h3 style="color: #94B4C1;">What you can do on RequestHub:</h3>
-  <ul style="padding-left: 20px;">
-    <li><strong>Internship</strong> – Submit and track internship permissions</li>
-    <li><strong>ID Card</strong> – Request for new or duplicate ID cards</li>
-    <li><strong>Hackathon</strong> – Apply for academic events and competitions</li>
-    <li><strong>Leave</strong> – Easily manage your academic leave applications</li>
-  </ul>
+      <!-- Greeting -->
+      <p style="font-size: 16px; color: #333;">Hi <strong>${name}</strong>,</p>
+      <p style="font-size: 16px; line-height: 1.6; color: #444;">
+        We're thrilled to have you onboard. <strong>RequestHub</strong> is designed to simplify academic service requests with speed and clarity.
+      </p>
 
-  <p>Here's how it works in 5 simple steps:</p>
-  <ol style="padding-left: 20px;">
-    <li>Register/Login with your credentials</li>
-    <li>Verify your email using the OTP</li>
-    <li>Select the desired academic service</li>
-    <li>Fill in the required form details</li>
-    <li>Submit and track your request's progress</li>
-  </ol>
+      <!-- Divider -->
+      <hr style="border: none; border-top: 1px solid #ddd; margin: 25px 0;">
 
-  <div style="margin: 30px 0;">
-    <a href="https://request-hub-52.vercel.app/" style="background-color: #547792; color: white; padding: 12px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">🚀 Get Started Now</a>
+      <!-- Features -->
+      <h3 style="color: #547792; font-size: 18px; margin-bottom: 10px;">What can you do with RequestHub?</h3>
+      <ul style="padding-left: 20px; color: #444; line-height: 1.6; font-size: 15px;">
+        <li><strong>Internship:</strong> Request internship permissions seamlessly.</li>
+        <li><strong>ID Card:</strong> Apply for new or duplicate ID cards.</li>
+        <li><strong>Hackathon:</strong> Register for events and competitions.</li>
+        <li><strong>Leave:</strong> Submit and track academic leave requests.</li>
+      </ul>
+
+      <!-- Steps -->
+      <p style="margin-top: 20px; font-size: 16px; color: #213448;"><strong>How it works:</strong></p>
+      <ol style="padding-left: 20px; color: #444; font-size: 15px; line-height: 1.6;">
+        <li>Register or log in to your account</li>
+        <li>Verify your email with the OTP</li>
+        <li>Select your required service</li>
+        <li>Fill in the form with necessary details</li>
+        <li>Submit and track the status of your request</li>
+      </ol>
+
+      <!-- Call to Action -->
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="https://request-hub-52.vercel.app" style="background-color: #547792; color: #fff; padding: 14px 30px; border-radius: 8px; font-size: 16px; text-decoration: none; display: inline-block;">
+           Get Started Now !
+        </a>
+      </div>
+
+      <!-- Support -->
+      <p style="font-size: 14px; color: #666; text-align: center;">
+        Need help? Reach out at <a href="mailto:requesthub98@gmail.com" style="color: #547792; text-decoration: none;">requesthub98@gmail.com</a>
+      </p>
+
+      <!-- Footer -->
+      <p style="margin-top: 30px; font-size: 13px; color: #999; text-align: center;">
+        With appreciation,<br>The RequestHub Team
+      </p>
+
+    </div>
   </div>
-
-  <p>Need help? Contact us at <a href="mailto:requesthub98@gmail.com">Support Mail</a></p>
-
-  <p style="margin-top: 30px; font-size: 14px; color: #777;">
-    Best regards,<br>
-    The RequestHub Team
-  </p>
-</div>
-`
+  `
         });
+
 
         return res.json({
             success: true,
@@ -214,7 +237,7 @@ export const sendVerifyOtp = async (req, res) => {
             html: `
                 <div style="font-family: Arial, sans-serif; line-height: 1.6;">
                     <h2>Hi ${name},</h2>
-                    <p>🎉 <strong>Welcome to RequestHub!</strong> We're thrilled to have you with us.</p>
+                    <p><strong>Welcome to RequestHub!</strong> We're thrilled to have you with us.</p>
                     <p>Please use the OTP below to verify your account. This code is valid for <strong>10 minutes</strong>:</p>
                     <div style="font-size: 22px; font-weight: bold; color: #2F54EB; background-color: #F0F4FF; padding: 12px 24px; width: fit-content; border-radius: 8px; border: 1px solid #d6e4ff;">
                         ${otp}
