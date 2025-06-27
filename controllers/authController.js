@@ -38,17 +38,11 @@ export const register = async (req, res) => {
             });
         }
 
-        const existingUser = await userModel.findOne({
-            $or: [
-                { email },
-                { rollNumber }
-            ]
-        });
-
+        const existingUser = await userModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({
                 success: false,
-                message: "User Already Exists !"
+                message: "User already exists"
             });
         }
 
@@ -68,7 +62,42 @@ export const register = async (req, res) => {
             to: email,
             subject: "🎉 Welcome to RequestHub!",
             text: `Hi ${name},\n\nWelcome to RequestHub...`,
-            html: `<div>Welcome email HTML content</div>`
+            html: `<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7f9fc; padding: 30px; border-radius: 10px; color: #213448; max-width: 600px; margin: auto; border: 1px solid #ddd;">
+  <h2 style="color: #547792;">🎉 Welcome to RequestHub!</h2>
+  <p>Hi <strong>{{name}}</strong>,</p>
+  <p>We're excited to have you onboard. RequestHub is your one-stop portal for managing academic requests with <strong>efficiency</strong> and <strong>clarity</strong>.</p>
+
+  <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+
+  <h3 style="color: #94B4C1;">What you can do on RequestHub:</h3>
+  <ul style="padding-left: 20px;">
+    <li><strong>Internship</strong> – Submit and track internship permissions</li>
+    <li><strong>ID Card</strong> – Request for new or duplicate ID cards</li>
+    <li><strong>Hackathon</strong> – Apply for academic events and competitions</li>
+    <li><strong>Leave</strong> – Easily manage your academic leave applications</li>
+  </ul>
+
+  <p>Here's how it works in 5 simple steps:</p>
+  <ol style="padding-left: 20px;">
+    <li>Register/Login with your credentials</li>
+    <li>Verify your email using the OTP</li>
+    <li>Select the desired academic service</li>
+    <li>Fill in the required form details</li>
+    <li>Submit and track your request's progress</li>
+  </ol>
+
+  <div style="margin: 30px 0;">
+    <a href="https://yourappdomain.com/login" style="background-color: #547792; color: white; padding: 12px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">🚀 Get Started Now</a>
+  </div>
+
+  <p>Need help? Contact us at <a href="mailto:support@requesthub.com">support@requesthub.com</a></p>
+
+  <p style="margin-top: 30px; font-size: 14px; color: #777;">
+    Best regards,<br>
+    The RequestHub Team
+  </p>
+</div>
+`
         });
 
         return res.json({
