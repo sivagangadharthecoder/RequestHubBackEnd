@@ -31,6 +31,7 @@ export const register = async (req, res) => {
     const { name, rollNumber, email, password } = req.body;
 
     try {
+        // Check for empty fields
         if (!name || !rollNumber || !email || !password) {
             return res.status(400).json({
                 success: false,
@@ -38,11 +39,31 @@ export const register = async (req, res) => {
             });
         }
 
-        const existingUser = await userModel.findOne({ email });
-        if (existingUser) {
+        // Validate email domain
+        const allowedDomains = ["acet.ac.in", "aec.edu.in", "acoe.edu.in"];
+        const domain = email.split("@")[1];
+        if (!domain || !allowedDomains.includes(domain)) {
+            return res.status(400).json({
+                success: false,
+                message: "Enter college mail only"
+            });
+        }
+
+        // Check for existing user
+        const existingUserByEmail = await userModel.findOne({ email });
+        const existingUserByRollNumber = await userModel.findOne({ rollNumber });
+        if (existingUserByEmail || existingUserByRollNumber) {
             return res.status(400).json({
                 success: false,
                 message: "User already exists"
+            });
+        }
+
+        // Validate password complexity
+        if (password.length < 8) {
+            return res.status(400).json({
+                success: false,
+                message: "Password must be at least 8 characters"
             });
         }
 
@@ -121,7 +142,6 @@ export const register = async (req, res) => {
   </div>
   `
         });
-
 
         return res.json({
             success: true,
