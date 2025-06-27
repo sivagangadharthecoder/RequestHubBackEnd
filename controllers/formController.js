@@ -2,6 +2,7 @@ import FormModel from "../models/formModel.js";
 import nodemailer from "nodemailer";
 import fs from "fs";
 import dotenv from "dotenv";
+import adminAddModel from "../models/adminAddModel.js";
 
 dotenv.config();
 
@@ -73,7 +74,7 @@ export const submitForm = async (req, res) => {
 
 export const getApplications = async (req, res) => {
   try {
-    const applications = await FormModel.find().sort({ createdAt: -1 });
+    const applications = await FormModel.find(adminAddModel.department).sort({ createdAt: -1 });
     res.status(200).json(applications);
   } catch (error) {
     console.error("Error fetching applications:", error);
@@ -137,12 +138,12 @@ export const approveApplication = async (req, res) => {
 };
 
 export const rejectApplication = async (req, res) => {
-  const { id} = req.body;
+  const { id } = req.body;
 
   try {
     const application = await FormModel.findByIdAndUpdate(
       id,
-      { status: "Rejected"},
+      { status: "Rejected" },
       { new: true }
     );
 

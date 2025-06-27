@@ -29,10 +29,10 @@ const sendEmail = async (mailOptions) => {
 };
 
 export const register = async (req, res) => {
-    const { email, password } = req.body;
+    const { department, email, password } = req.body;
 
     try {
-        if (!email || !password) {
+        if (!department || !email || !password) {
             return res.status(400).json({
                 success: false,
                 message: "Please Fill All Fields !"
