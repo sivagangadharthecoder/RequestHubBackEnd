@@ -10,9 +10,9 @@ const generateToken = (userId) => {
 const getCookieOptions = () => {
     return {
         httpOnly: true,
-        secure: true, // Required for HTTPS (Render uses HTTPS)
-        sameSite: "None", // Required for cross-origin cookies
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        secure: true,
+        sameSite: "None",
+        maxAge: 30 * 24 * 60 * 60 * 1000,
         path: "/"
     };
 };
@@ -31,7 +31,6 @@ export const register = async (req, res) => {
     const { name, rollNumber, email, password } = req.body;
 
     try {
-        // Check for empty fields
         if (!name || !rollNumber || !email || !password) {
             return res.status(400).json({
                 success: false,
@@ -39,7 +38,6 @@ export const register = async (req, res) => {
             });
         }
 
-        // Validate email domain
         const allowedDomains = ["acet.ac.in", "aec.edu.in", "acoe.edu.in"];
         const domain = email.split("@")[1];
         if (!domain || !allowedDomains.includes(domain)) {
@@ -49,7 +47,6 @@ export const register = async (req, res) => {
             });
         }
 
-        // Check for existing user
         const existingUserByEmail = await userModel.findOne({ email });
         const existingUserByRollNumber = await userModel.findOne({ rollNumber });
         if (existingUserByEmail || existingUserByRollNumber) {
@@ -59,7 +56,6 @@ export const register = async (req, res) => {
             });
         }
 
-        // Validate password complexity
         if (password.length < 8) {
             return res.status(400).json({
                 success: false,
