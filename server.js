@@ -28,7 +28,7 @@ connectDB();
 
 // 🟢 CORS Setup (BEFORE routes)
 const allowedOrigins = [
-  'https://request-hub-services.vercel.app',
+  'https://request-hub-52.vercel.app',
   'http://localhost:5173'
 ];
 
