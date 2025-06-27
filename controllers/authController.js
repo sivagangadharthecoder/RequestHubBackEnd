@@ -8,13 +8,13 @@ const generateToken = (userId) => {
 };
 
 const getCookieOptions = () => {
-  return {
-    httpOnly: true,
-    secure: true, // Required for HTTPS (Render uses HTTPS)
-    sameSite: "None", // Required for cross-origin cookies
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-    path: "/"
-  };
+    return {
+        httpOnly: true,
+        secure: true, // Required for HTTPS (Render uses HTTPS)
+        sameSite: "None", // Required for cross-origin cookies
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        path: "/"
+    };
 };
 
 
@@ -38,11 +38,17 @@ export const register = async (req, res) => {
             });
         }
 
-        const existingUser = await userModel.findOne({ email });
+        const existingUser = await userModel.findOne({
+            $or: [
+                { email },
+                { rollNumber }
+            ]
+        });
+
         if (existingUser) {
             return res.status(400).json({
                 success: false,
-                message: "User already exists"
+                message: "User Already Exists !"
             });
         }
 
@@ -134,7 +140,7 @@ export const logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
         secure: true,
-        sameSite: "None", 
+        sameSite: "None",
         path: "/"
     });
 
