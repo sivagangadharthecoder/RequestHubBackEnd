@@ -68,7 +68,7 @@ export const register = async (req, res) => {
 
       <!-- Header -->
       <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: #213448; font-size: 26px; margin-bottom: 10px;">🎉 Welcome to <span style="color: #547792;">RequestHub</span>!</h1>
+        <h1 style="color: #213448; font-size: 26px; margin-bottom: 10px;">Welcome to <span style="color: #547792;">RequestHub</span>!</h1>
         <p style="font-size: 16px; color: #444;">Your academic journey just got easier.</p>
       </div>
 
@@ -109,7 +109,7 @@ export const register = async (req, res) => {
 
       <!-- Support -->
       <p style="font-size: 14px; color: #666; text-align: center;">
-        Need help? Reach out at <a href="mailto:requesthub98@gmail.com" style="color: #547792; text-decoration: none;">requesthub98@gmail.com</a>
+        Need help? Reach out at <a href="mailto:requesthub98@gmail.com" style="color: #547792; text-decoration: none;">Support Mail</a>
       </p>
 
       <!-- Footer -->
