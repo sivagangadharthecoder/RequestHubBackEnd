@@ -23,10 +23,8 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 🟢 Connect to MongoDB
 connectDB();
 
-// 🟢 CORS Setup (BEFORE routes)
 const allowedOrigins = [
   'https://request-hub-52.vercel.app',
   'http://localhost:5173'
