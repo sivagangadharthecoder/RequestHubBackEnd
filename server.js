@@ -41,24 +41,20 @@ app.use(cors({
   credentials: true
 }));
 
-// 🟢 Middleware
 app.use(express.json());
 app.use(cookieParser());
 
-// 🟢 Debugging incoming origin
 app.use((req, res, next) => {
   console.log('🛰️ Origin:', req.headers.origin);
   console.log('📨 Body:', req.body);
   next();
 });
 
-// 🟢 Static File Serving
 app.use("/uploads", express.static(path.resolve("uploads")));
 app.use("/hackathonuploads", express.static(join(__dirname, "hackathonuploads")));
 app.use("/pdfs", express.static(join(__dirname, "pdfs")));
 app.use("/Idpdfs", express.static(join(__dirname, "Idpdfs")));
 
-// 🟢 Routes
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/admin-add', adminAddRouter);
@@ -69,7 +65,6 @@ app.use('/api', hackathonRoutes);
 app.use('/api', leaveRoutes);
 app.use('/api', idRoutes);
 
-// 🔴 Error handler for CORS and internal errors
 app.use((err, req, res, next) => {
   console.error('❌ Error:', err.message);
   if (err.message === 'Not allowed by CORS') {
@@ -78,7 +73,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
 
-// 🟢 Start Server
 app.listen(PORT, () => {
   console.log(` Server running on port ${PORT}`);
 });
