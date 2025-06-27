@@ -87,10 +87,10 @@ export const register = async (req, res) => {
   </ol>
 
   <div style="margin: 30px 0;">
-    <a href="https://yourappdomain.com/login" style="background-color: #547792; color: white; padding: 12px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">🚀 Get Started Now</a>
+    <a href="https://request-hub-52.vercel.app/" style="background-color: #547792; color: white; padding: 12px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;">🚀 Get Started Now</a>
   </div>
 
-  <p>Need help? Contact us at <a href="mailto:support@requesthub.com">support@requesthub.com</a></p>
+  <p>Need help? Contact us at <a href="mailto:gsivagangadhar366@gmail.com">Support Mail</a></p>
 
   <p style="margin-top: 30px; font-size: 14px; color: #777;">
     Best regards,<br>
