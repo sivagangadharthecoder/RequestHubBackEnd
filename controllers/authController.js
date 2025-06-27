@@ -61,7 +61,7 @@ export const register = async (req, res) => {
             from: process.env.EMAIL_USER,
             to: email,
             subject: "🎉 Welcome to RequestHub!",
-            text: `Hi ${req.body.name},\n\nWelcome to RequestHub...`,
+            text: `Hi,\n\nWelcome to RequestHub...`,
             html: `<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7f9fc; padding: 30px; border-radius: 10px; color: #213448; max-width: 600px; margin: auto; border: 1px solid #ddd;">
   <h2 style="color: #547792;">🎉 Welcome to RequestHub!</h2>
   <p>Hi <strong>{{name}}</strong>,</p>
